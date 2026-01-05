@@ -19,7 +19,7 @@ def extract_tasting_notes(message):
         return CoffeeTasting(notes=[''])
 
     response = client.beta.chat.completions.parse(
-        model="gpt-4o-2024-08-06",
+        model="gpt-4o-mini-2024-07-18",
         messages=[
             #{"role": "system", "content": "Extract the main tasting notes or flavor descriptors from the following message."},
             {"role": "system",
