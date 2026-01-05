@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from openai_stuff import extract_tasting_notes, get_embeddings
 import sys
 from rarity_metrics import get_rarity_scores
-from daily_notes import get_manual_notes
+from load_csv_notes import load_notes_from_csv
 import numpy as np
 from scipy.optimize import linear_sum_assignment
 from flask_sqlalchemy import SQLAlchemy
@@ -263,7 +263,8 @@ def run_app():
 
 def run_local_demo(day, verbose=True):
 
-    db = get_manual_notes()
+    # Load notes from CSV (Shervin and Caitlin only)
+    db = load_notes_from_csv(participants=['shervin', 'caitlin'])
 
     # Official tasting notes
     official_message = db[day]['Onyx']
